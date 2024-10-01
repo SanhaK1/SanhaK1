@@ -1,7 +1,7 @@
 <div class="wrapper">
     <div class="container">
-        <div class="overlay"></div>
         <div class="card"></div>
+        <div class="overlay"></div> <!-- Overlay는 카드와 같은 레벨에 위치 -->
     </div>
     <div class="text">
         <h1>Sansek</h1>
@@ -16,8 +16,13 @@
     var overlay = document.querySelector('.overlay');
     var card = document.querySelector('.card');
 
+    // 다크 모드 지원
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark-mode');
+    }
+
     container.addEventListener('mousemove', function(e) {
-        var rect = container.getBoundingClientRect(); // 카드의 크기와 위치 가져오기
+        var rect = card.getBoundingClientRect(); // 카드의 크기와 위치 가져오기
         var x = e.clientX - rect.left; // 카드 내부의 x 좌표
         var y = e.clientY - rect.top; // 카드 내부의 y 좌표
 
@@ -38,9 +43,6 @@
     });
 </script>
 
-
-
-
 <style>
     body {
         display: flex;
@@ -48,6 +50,12 @@
         align-items: center;
         height: 100vh; /* 화면 전체 높이 */
         margin: 0; /* 기본 마진 제거 */
+        background-color: #f0f0f0; /* 기본 배경 색상 */
+        transition: background-color 0.5s; /* 배경 색상 변경 시 애니메이션 추가 */
+    }
+
+    body.dark-mode {
+        background-color: #181818; /* 다크 모드 배경 색상 */
     }
 
     .wrapper {
@@ -62,13 +70,21 @@
         height: 735px; /* 카드의 110% */
         transition: all 0.1s; /* 기본 애니메이션 설정 */
     }
-    
+
+    .card {
+        width: 501px; 
+        height: 668px;
+        background-image: url(https://raw.githubusercontent.com/SanhaK1/SanhaK1/refs/heads/main/assets/Devil_Cat.jpg);
+        background-size: cover;
+        z-index: 0;
+    }
+
     .overlay {
-        position: absolute;
+        position: absolute; /* 절대 위치 설정 */
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
+        width: 501px; /* 카드와 같은 넓이 설정 */
+        height: 668px; /* 카드와 같은 높이 설정 */
         background: linear-gradient(105deg, 
             transparent 40%, 
             rgba(255, 255, 255, 0.8) 45%, 
@@ -82,17 +98,14 @@
         z-index: 1; /* 카드 위에 나타나도록 설정 */
     }
 
-    .card {
-        width: 501px; 
-        height: 668px;
-        background-image: url(https://raw.githubusercontent.com/SanhaK1/SanhaK1/refs/heads/main/assets/Devil_Cat.jpg);
-        background-size: cover;
-        z-index: 0;
-    }
-
     .text {
         width: 200px; /* 텍스트 박스의 넓이 설정 */
         color: #333; /* 텍스트 색상 */
+        transition: color 0.5s; /* 텍스트 색상 변경 시 애니메이션 추가 */
+    }
+
+    body.dark-mode .text {
+        color: #f0f0f0; /* 다크 모드에서의 텍스트 색상 */
     }
 
     .text h1 {
@@ -103,5 +116,17 @@
     .text p {
         font-size: 16px;
         margin-top: 10px;
+    }
+
+    .text a {
+    color: #007BFF; /* 링크의 기본 색상 */
+    text-decoration: none; /* 기본 밑줄 제거 */
+    font-weight: bold; /* 글자 두껍게 */
+    transition: color 0.3s, text-shadow 0.3s; /* 색상과 그림자 변경 시 애니메이션 추가 */
+    }
+
+    .text a:hover {
+    color: #0056b3; /* 마우스 오버 시 색상 변경 */
+    text-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* 마우스 오버 시 그림자 추가 */
     }
 </style>
