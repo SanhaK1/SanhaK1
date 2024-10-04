@@ -1,25 +1,42 @@
-<div class="wrapper">
-    <div class="container">
-        <div class="card"></div>
-        <div class="overlay"></div> <!-- Overlay는 카드와 같은 레벨에 위치 -->
+<head>
+    <title>고양이는 악마라는 증거</title>
+</head>
+<body>
+    <button class="top-left-button" id="changeTextButton">이건뭐여</button> <!-- 버튼에 ID 추가 -->
+    <div class="wrapper">
+        <div class="container">
+            <div class="card"></div>
+            <div class="overlay"></div> <!-- Overlay는 카드와 같은 레벨에 위치 -->
+        </div>
+        <div class="text">
+            <h1>Sansek</h1>
+            <p>Sansek입니다. 별건 없고요 그냥 만들어봤습니다. <br><br> 고양이가 참... 귀엽죠?<br>반짝거리는 것도 한번 넣어봤습니다.</p>
+            <a href="https://steamcommunity.com/id/Sansek/">스팀입니다.</a><br>
+            <a href="https://discordapp.com/users/277026265247252490">디스코드입니다.</a>
+        </div>
     </div>
-    <div class="text">
-        <h1>Sansek</h1>
-        <p>Sansek입니다. 별건 없고요 그냥 만들어봤습니다. <br><br> 고양이가 참... 귀엽죠?<br>반짝거리는 것도 한번 넣어봤습니다.</p>
-        <a href="https://steamcommunity.com/id/Sansek/">스팀입니다.</a><br>
-        <a href="https://discordapp.com/users/277026265247252490">디스코드입니다.</a>
-    </div>
-</div>
+</body>
 
 <script>
     var container = document.querySelector('.container');
     var overlay = document.querySelector('.overlay');
     var card = document.querySelector('.card');
+    var button = document.getElementById('changeTextButton'); // 버튼 요소 선택
 
     // 다크 모드 지원
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.body.classList.add('dark-mode');
     }
+
+    // 버튼 클릭 이벤트 추가
+    button.addEventListener('click', function() {
+        // 버튼의 텍스트 변경
+        if (button.textContent === '이건뭐여') {
+            button.textContent = '뭐여 암것도 아니네;';
+        } else {
+            button.textContent = '이건뭐여';
+        }
+    });
 
     container.addEventListener('mousemove', function(e) {
         var rect = card.getBoundingClientRect(); // 카드의 크기와 위치 가져오기
@@ -52,10 +69,30 @@
         margin: 0; /* 기본 마진 제거 */
         background-color: #f0f0f0; /* 기본 배경 색상 */
         transition: background-color 0.5s; /* 배경 색상 변경 시 애니메이션 추가 */
+        position: relative; /* 절대 위치 요소를 위해 설정 */
     }
 
     body.dark-mode {
         background-color: #181818; /* 다크 모드 배경 색상 */
+    }
+
+    .top-left-button {
+        position: absolute; /* 절대 위치 설정 */
+        top: 20px; /* 화면 상단에서 20px 아래 */
+        left: 20px; /* 화면 왼쪽에서 20px 오른쪽 */
+        padding: 10px 20px; /* 패딩 설정 */
+        font-size: 16px; /* 글자 크기 */
+        color: #fff; /* 글자 색상 */
+        background-color: rgba(0, 123, 255, 0.5); /* 배경색을 반투명하게 설정 */
+        border: 2px solid rgba(0, 123, 255, 0.7); /* 반투명한 테두리 */
+        border-radius: 5px; /* 둥근 모서리 */
+        cursor: pointer; /* 마우스 커서 변경 */
+        transition: background-color 0.3s, color 0.3s; /* 배경 색상과 글자 색상 변경 시 애니메이션 추가 */
+    }
+
+    .top-left-button:hover {
+        background-color: rgba(0, 123, 255, 0.7); /* 마우스 오버 시 배경 색상 변경 */
+        color: #fff; /* 마우스 오버 시 글자 색상 변경 */
     }
 
     .wrapper {
@@ -119,14 +156,14 @@
     }
 
     .text a {
-    color: #007BFF; /* 링크의 기본 색상 */
-    text-decoration: none; /* 기본 밑줄 제거 */
-    font-weight: bold; /* 글자 두껍게 */
-    transition: color 0.3s, text-shadow 0.3s; /* 색상과 그림자 변경 시 애니메이션 추가 */
+        color: #007BFF; /* 링크의 기본 색상 */
+        text-decoration: none; /* 기본 밑줄 제거 */
+        font-weight: bold; /* 글자 두껍게 */
+        transition: color 0.3s, text-shadow 0.3s; /* 색상과 그림자 변경 시 애니메이션 추가 */
     }
 
     .text a:hover {
-    color: #0056b3; /* 마우스 오버 시 색상 변경 */
-    text-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* 마우스 오버 시 그림자 추가 */
+        color: #0056b3; /* 마우스 오버 시 색상 변경 */
+        text-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* 마우스 오버 시 그림자 추가 */
     }
 </style>
